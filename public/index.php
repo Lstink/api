@@ -2,6 +2,7 @@
 
 define('APP_PATH',__DIR__);
 define('FUN_PATH',__DIR__.DIRECTORY_SEPARATOR.'../functions');
+define('CONFIG_PATH',__DIR__.DIRECTORY_SEPARATOR.'../config');
 
 include_once '../libs/Autoload.class.php';
 // 加载composer提供的自动加载类

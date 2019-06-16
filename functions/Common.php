@@ -20,9 +20,3 @@ function createSign($data=[])
     return ['nonceStr'=>$randStr,'timestamp'=>$timestamp,'signature'=>$signature];
 
 }
-function createRandString($length = 20)
-{
-    $string = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM@$%';
-    $string = str_shuffle($string);
-    return substr($string,1,$length);
-}

@@ -19,3 +19,20 @@ function request()
     }
     return $request;
 }
+
+function createRandString($length = 20)
+{
+    $string = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM@$%';
+    $string = str_shuffle($string);
+    return substr($string,1,$length);
+}
+
+function config($name='')
+{
+    static $config;
+    if (!$config instanceof \libs\Config) {
+        $config = new \libs\Config;
+    }
+    $res = $config -> getConfig($name);
+    return $res;
+}

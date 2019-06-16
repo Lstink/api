@@ -2,7 +2,7 @@
 
 namespace controllers;
 
-use libs\HttpClient;
+use libs\{ HttpClient , FileUpload };
 
 class TestController
 {
@@ -24,5 +24,20 @@ class TestController
             'password' => '123456', 
         ];
         $res = HttpClient::fsockopenHttp($url);
+    }
+    public function actionUpload()
+    {
+        $upload = new FileUpload;
+        // $upload -> setOption('transferByBase64',true);
+        $res = $upload -> uploads();
+        if (!$res) {
+           echo $upload -> getError();
+        }
+    }
+    public function actionConfig()
+    {
+        $res = config('ddd.ffff');
+        dd($res);
+
     }
 }
