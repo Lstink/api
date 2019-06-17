@@ -1,5 +1,6 @@
 {
     "require": {
-        "emarref/jwt": "^1.0"
+        "emarref/jwt": "^1.0",
+        "qiniu/php-sdk": "^7.2"
     }
 }

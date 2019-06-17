@@ -13,7 +13,11 @@ class Model
 
     public function __construct()
     {
-        $this -> pdo = new \PDO('mysql:host=127.0.0.1;dbname=blog;charset=utf8','root','root');
+        $host = config('database.host');
+        $dbname = config('database.dbname');
+        $username = config('database.username');
+        $password = config('database.password');
+        $this -> pdo = new \PDO("mysql:host=$host;dbname=$dbname;charset=utf8",$username,$password);
         if ($this -> table == '') {
             $this -> getTableName();
         }

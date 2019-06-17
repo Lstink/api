@@ -29,10 +29,7 @@ function createRandString($length = 20)
 
 function config($name='')
 {
-    static $config;
-    if (!$config instanceof \libs\Config) {
-        $config = new \libs\Config;
-    }
+    $config =  \libs\Config::getInstance();
     $res = $config -> getConfig($name);
     return $res;
 }

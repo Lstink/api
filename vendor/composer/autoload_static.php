@@ -6,7 +6,15 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitcd45f5f380ef0be388e3096671e8624a
 {
+    public static $files = array (
+        '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
+        'Q' => 
+        array (
+            'Qiniu\\' => 6,
+        ),
         'E' => 
         array (
             'Emarref\\Jwt\\' => 12,
@@ -14,6 +22,10 @@ class ComposerStaticInitcd45f5f380ef0be388e3096671e8624a
     );
 
     public static $prefixDirsPsr4 = array (
+        'Qiniu\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu',
+        ),
         'Emarref\\Jwt\\' => 
         array (
             0 => __DIR__ . '/..' . '/emarref/jwt/src',

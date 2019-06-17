@@ -9,16 +9,17 @@ class Config
     /**
      * @content 构造函数
      */
-    public function __construct($path='')
+    private function __construct($path='')
     {
         $config = [CONFIG_PATH,$path];
         $configs = [];
+        // dd($this -> getFile(CONFIG_PATH));
         foreach ($config as $value) {
             //根据路径获取里面的文件
             $files = $this -> getFile($value);
-            foreach ($files as $k => $v) {
+            foreach ($files as $v) {
                 //获取文件内的内容
-                $configs = array_merge($this -> parseFile($k, $v,$value),$configs);
+                $configs = array_merge($this -> parseFile($v),$configs);
 
             }
         }
@@ -31,13 +32,17 @@ class Config
     {
         $files = [];
         if (is_dir($path)) {
-            if ($fp = opendir($path)) {
-                while ($file = readdir($fp)) {
+            if (($fp = opendir($path)) != false) {
+                while (($file = readdir($fp)) != false) {
+                    $dir = $path.DIRECTORY_SEPARATOR.$file;
                     if ($file != '.' && $file != '..') {
-                        if (is_dir($path.DIRECTORY_SEPARATOR.$file)) {
-                            $files[$file] = $this -> getFile($path.DIRECTORY_SEPARATOR.$file);
+                        if (is_dir($dir)) {
+                            $arr = $this -> getFile($dir);
+                            foreach ($arr as $v) {
+                                $files[] = $v;
+                            }
                         }else{
-                            $files[] = $file;
+                            $files[] = $dir;
                         }
                     }
                 }
@@ -48,22 +53,28 @@ class Config
     /**
      * @content 获取文件内的内容
      */
-    public function parseFile($key,$file,$path)
+    public function parseFile($path)
     {
-        $arr = [];
-        if (is_array($file)) {
-            foreach ($file as $k => $v) {
-                $arr = array_merge($arr,parse_ini_file($path.DIRECTORY_SEPARATOR.$key.DIRECTORY_SEPARATOR.$v, true));
-            }
-        }else{
-            $arr = array_merge($arr,parse_ini_file($path.DIRECTORY_SEPARATOR.$file, true));
+        return parse_ini_file($path, true);
+    }
+    /**
+     * @content 设置单个配置项
+     */
+    public function setConfig($key,$value)
+    {
+        $arr = explode('.',$key);
+        $num = count($arr);
+        // 1说明为 name 2且最后一个为''则为name. 
+        if ($num == 1 || $arr[1] == '') {
+            $this -> configs[$arr[0]] = $value;
+        }else if($num == 2){
+            $this -> configs[$arr[0]][$arr[1]] = $value;
         }
-        return $arr;
     }
     /**
      * @content 获取单个文件内的内容
      */
-    public function getConfig($name)
+    public function getConfig($name='')
     {
         $arr = explode('.',$name);
         $num = count($arr);
@@ -76,7 +87,7 @@ class Config
     }
     private function __clone()
     {}
-    private static function getInstance()
+    public static function getInstance()
     {
         if (!self::$instance instanceof self) {
             self::$instance = new self;
