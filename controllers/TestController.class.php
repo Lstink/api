@@ -4,6 +4,7 @@ namespace controllers;
 
 use libs\{ HttpClient , FileUpload };
 
+
 class TestController
 {
     public function actionTest()
@@ -36,9 +37,9 @@ class TestController
     }
     public function actionConfig()
     {
-        $config = \libs\Config::getInstance();
-        $config -> setConfig('database.username','yyy');
-        $res = config('database');
+        // $config = \libs\Config::getInstance();
+        // $config -> setConfig('database.username','yyy');
+        $res = config('qiniu.AccessKey');
         dd($res);
 
     }
@@ -63,5 +64,17 @@ class TestController
         fwrite($fp,$form);
         $res = stream_get_contents($fp);
         dd($res);
+    }
+    /**
+     * @content 上传到七牛云
+     */
+    public function actionUploadByQiNiu()
+    {
+        $data = [
+            'name' => '1231.jpg',
+            'content' => base64_encode(\file_get_contents('./1552965135434.jpg')),
+        ];
+        $res = HttpClient::fopenHttp('http://www.apitest.com/index.php?c=upload&a=uploadByQiniu',$data);
+        echo($res);
     }
 }
