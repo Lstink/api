@@ -77,4 +77,18 @@ class TestController
         $res = HttpClient::fopenHttp('http://www.apitest.com/index.php?c=upload&a=uploadByQiniu',$data);
         echo($res);
     }
+    /**
+     * @content 跨域测试
+     */
+    public function actionAjaxUpload()
+    {
+        include_once '../views/ajaxUpload.html';
+    }
+    /**
+     * @content 多文件ajax上传
+     */
+    public function actionAjaxUploads()
+    {
+        include_once '../views/ajaxUploads.html';
+    }
 }

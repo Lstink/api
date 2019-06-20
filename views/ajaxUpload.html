@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax上传</title>
+    <script src="./jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <form  id="myForm">
+        <input type="file" name="file[]" id="file" multiple>
+        <input type="button" value="选择文件" id="up">
+        <input type="button" value="提交" id="button">
+        <div class="img">
+            <!-- <li><img src="./photo.jpg" alt=""><i>×</i><div class="none">上传成功</div></li> -->
+        </div>
+        <div class="demo"></div>
+    </form>
+</body>
+</html>
+<script>
+$(function(){
+    //定义存储上传文件对象的数据
+    var fileObj = [];
+    //定义上传成功的个数
+    var success = 0;
+    //选择文件的点击事件
+    $('#up').click(function(){
+        $('#file').click();
+    });
+
+    // //文件上传的change事件
+    // $('#file').change(function(){
+    //     var file = $(this)[0].files;
+    //     for (var index = 0; index < file.length; index++) {
+    //         var reader = new FileReader();
+    //         reader.readAsDataURL(file[index]);
+    //         reader.onload = function(res){
+    //             var path = res.target.result;
+    //             $('.img').append('<li><img src='+path+' width=100px><i>×</i><div class="none"></div></li>');
+    //         }
+            
+    //     }
+    //     fileObj.push.apply(fileObj,$(this)[0].files);
+        
+        
+    // });
+
+    //提交上传
+    $(document).on('click','#button',function(){
+        fileObj = $('#file')[0].files;
+        //判断所选择上传数组是否为空
+        if (fileObj.length == 0) {
+            return alert('请选择上传文件');
+        }
+        for (let index = 0; index < fileObj.length; index++) {
+            //文件名称
+            var name = fileObj[index].name;
+            //设置上传文件的分大小5M
+            var chunkSize = 1024* 1024*5;
+            //文件的总大小
+            var sumSize = fileObj[index].size;
+            //分片的数量
+            var chunkNum = Math.ceil(sumSize/chunkSize);
+            for (let i = 0; i < chunkNum; i++) {
+                //每片的读取文件起始位置
+                var start = (i*chunkSize);
+                //结束位置
+                var end = (start + chunkSize) > sumSize ? sumSize : start + chunkSize;
+                console.log('start:'+start+',end:'+end+',sumSize:'+sumSize);
+                
+                //截取文件
+                var chunk = fileObj[index].slice(start,end);
+                //发送文件
+                sendAjax(name,sumSize,i+1,chunkNum,chunk);
+            }
+            
+            
+
+            
+            
+        }
+        
+    });
+    
+    //图片的删除事件
+    $(document).on('click','i',function(){
+        var index = $(this).parent().index();
+        //移除图片
+        $(this).parent().remove();
+        //删除json对象中的元素
+        fileObj.splice(index-success,1);
+    });
+
+    //发送ajax
+    function sendAjax(name,size,num,sumNum,chunk)
+    {
+        var formData = new FormData();
+        formData.append('file',chunk,name);
+        formData.append('size',size);
+        formData.append('num',num);
+        formData.append('sumNum',sumNum);
+        $.ajax({
+            url: 'http://www.apitest.com/index.php?c=upload&a=uploads',
+            type: 'post',
+            processData: false,
+            contentType: false,
+            async: false,
+            dataType: 'json',
+            data: formData,
+            success: function(data){
+                if (data.code == 200) {
+                    alert('上传成功');
+                }else{
+                    console.log('上传失败');
+                }
+            },
+            error: function(res){
+                console.log('上传失败');
+            }
+
+        });
+    }
+    
+})
+</script>
