@@ -31,22 +31,6 @@ $(function(){
         $('#file').click();
     });
 
-    // //文件上传的change事件
-    // $('#file').change(function(){
-    //     var file = $(this)[0].files;
-    //     for (var index = 0; index < file.length; index++) {
-    //         var reader = new FileReader();
-    //         reader.readAsDataURL(file[index]);
-    //         reader.onload = function(res){
-    //             var path = res.target.result;
-    //             $('.img').append('<li><img src='+path+' width=100px><i>×</i><div class="none"></div></li>');
-    //         }
-            
-    //     }
-    //     fileObj.push.apply(fileObj,$(this)[0].files);
-        
-        
-    // });
 
     //提交上传
     $(document).on('click','#button',function(){
@@ -76,10 +60,6 @@ $(function(){
                 //发送文件
                 sendAjax(name,sumSize,i+1,chunkNum,chunk);
             }
-            
-            
-
-            
             
         }
         
