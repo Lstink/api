@@ -91,4 +91,12 @@ class TestController
     {
         include_once '../views/ajaxUploads.html';
     }
+    /**
+     * @content 文件头的处理
+     */
+    public function actionHeader()
+    {
+        $header = request() -> header();
+        dd($header);
+    }
 }

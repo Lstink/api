@@ -4,6 +4,11 @@ namespace libs;
 
 class Request
 {
+    protected $headers;
+    public function __construct()
+    {
+        $this -> headers = $this -> getHeaders();
+    }
     /**
 	 * @content get请求
 	 */
@@ -64,5 +69,45 @@ class Request
             }
         }
         return $data;
+    }
+    /**
+     * @content 获取http header头
+     */
+    public function getHeaders()
+    {
+        $headers = [];
+        $header = $_SERVER;
+        //如果有content-type或者content-length
+        isset($_SERVER['CONTENT_TYPE']) && $headers['Content-Type']= $_SERVER['CONTENT_TYPE'];
+        isset($_SERVER['CONTENT_LENGTH']) && $headers['Content-Length'] = $_SERVER['CONTENT_LENGTH'];
+        
+        foreach ($header as $key => $val) {
+            if (strpos($key,'HTTP_') === 0) {
+                $key = $this -> turnKey($key);
+                $headers[$key] = $val;
+            }
+        }
+        // $header = strpos();
+        return $headers;
+    }
+    /**
+     * @content 处理key
+     */
+    private function turnKey($key)
+    {
+        $key = str_replace('HTTP_','',$key);
+        $key = explode('_',$key);
+        $key = array_map(function($v){
+            return ucfirst(strtolower($v));
+        },$key);
+        $key = implode('-',$key);
+        return $key;
+    }
+    /**
+     * @content header方法
+     */
+    public function header($name='')
+    {
+        return empty($name)?$this -> headers:($this -> headers[$name]??null);
     }
 }
