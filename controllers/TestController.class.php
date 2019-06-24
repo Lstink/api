@@ -99,4 +99,18 @@ class TestController
         $header = request() -> header();
         dd($header);
     }
+    /**
+     * @加密解密测试
+     */
+    public function actionCrypt()
+    {
+        $data = encrypt('555');
+        dump($data);
+        $data = decrypt($data);
+        dump($data);
+        $num = \encryptCBC('f5df5fd5f');
+        dump($num);
+        $num = decryptCBC($num);
+        dump($num);
+    }
 }
