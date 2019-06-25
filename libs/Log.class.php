@@ -40,7 +40,7 @@ class Log
         $path = $this->path . DIRECTORY_SEPARATOR . $level;
         $this -> checkDir($path);
         $file = $path . DIRECTORY_SEPARATOR . date('Y-m-d').'.log';
-        $data = "[".date('Y-m-d H:i:s')."]-[{$level}]: $data\r";
+        $data = "[".date('Y-m-d H:i:s')."]-[{$level}]: $data\r\n";
         $res = file_put_contents($file,$data,FILE_APPEND);
         if ($res) {
             return true;
