@@ -3,6 +3,7 @@
 namespace controllers;
 
 use libs\{ HttpClient , FileUpload };
+use controllers\EncryptController;
 
 
 class TestController
@@ -112,5 +113,13 @@ class TestController
         dump($num);
         $num = decryptCBC($num);
         dump($num);
+    }
+    /**
+     * @content 加密解密的控制器
+     */
+    public function actionDemoCrypt()
+    {
+        $p = new EncryptController;
+        $p->opensslRsa();
     }
 }

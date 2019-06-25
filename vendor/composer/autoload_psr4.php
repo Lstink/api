@@ -7,5 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Qiniu\\' => array($vendorDir . '/qiniu/php-sdk/src/Qiniu'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Emarref\\Jwt\\' => array($vendorDir . '/emarref/jwt/src'),
 );

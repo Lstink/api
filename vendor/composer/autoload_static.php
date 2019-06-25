@@ -15,6 +15,14 @@ class ComposerStaticInitcd45f5f380ef0be388e3096671e8624a
         array (
             'Qiniu\\' => 6,
         ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
+        ),
+        'M' => 
+        array (
+            'Monolog\\' => 8,
+        ),
         'E' => 
         array (
             'Emarref\\Jwt\\' => 12,
@@ -25,6 +33,14 @@ class ComposerStaticInitcd45f5f380ef0be388e3096671e8624a
         'Qiniu\\' => 
         array (
             0 => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
         'Emarref\\Jwt\\' => 
         array (

@@ -20,7 +20,7 @@ class Autoload
     protected function _autoload($className)
     {
         $ext = '.class.php';
-        //传过来的值 classname 为 controller\classname
+        //自动获取的值 classname 为 controller\classname
         $file = str_replace('\\',DIRECTORY_SEPARATOR,$className).$ext;
         $file = APP_PATH.DIRECTORY_SEPARATOR.'../'.$file;
         
@@ -33,8 +33,11 @@ class Autoload
      */
     protected function loadFun($path)
     {
+        //判断路径是否是文件夹
         if (is_dir($path)) {
+            //如果是文件夹则打开文件夹，获得目录句柄
             if ($dir = opendir($path)) {
+                //从目录句柄中读取条目
                 while ($file = readdir($dir)) {
                     if ($file != '.' && $file != '..') {
                         include_once $path.DIRECTORY_SEPARATOR.$file;

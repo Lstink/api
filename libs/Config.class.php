@@ -55,6 +55,7 @@ class Config
      */
     public function parseFile($path)
     {
+        //解析一个配置文件，将其转化为数组
         return parse_ini_file($path, true);
     }
     /**
