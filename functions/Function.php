@@ -53,3 +53,13 @@ function decryptCBC($data,$key='yyy',$iv='yyyyyyyy')
 {
     return openssl_decrypt($data,'DES-CBC',$key,0,$iv);
 }
+
+function writeLog($data,$level)
+{
+    return \libs\Log::getInstance() -> writeLog($data,$level);
+}
+
+function monolog($data,$name,$level='INFO')
+{
+    return \libs\Log::getInstance() -> monolog($data,$name,$level);
+}

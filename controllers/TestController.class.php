@@ -2,7 +2,7 @@
 
 namespace controllers;
 
-use libs\{ HttpClient , FileUpload };
+use libs\{ HttpClient , FileUpload};
 use controllers\EncryptController;
 
 
@@ -121,5 +121,13 @@ class TestController
     {
         $p = new EncryptController;
         $p->opensslRsa();
+    }
+    /**
+     * @content 日志测试
+     */
+    public function actionLog()
+    {
+        $res = monolog('错啦','yyy','INFO');
+        dd($res);
     }
 }
