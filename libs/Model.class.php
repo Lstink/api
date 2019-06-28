@@ -10,7 +10,6 @@ class Model
     /**
      * @content 构造函数
      */
-
     public function __construct()
     {
         $host = config('database.host');

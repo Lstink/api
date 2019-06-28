@@ -1,0 +1,8 @@
+[2019-06-28 07:44:01]-[info]: This is a error in K:\phpStudy\PHPTutorial\WWW\api\controllers\TestController.class.php on line 142
+[2019-06-28 07:45:38]-[info]: This is a error in K:\phpStudy\PHPTutorial\WWW\api\controllers\TestController.class.php on line 142
+[2019-06-28 07:48:17]-[info]: This is a error in K:\phpStudy\PHPTutorial\WWW\api\controllers\TestController.class.php on line 142
+[2019-06-28 07:51:00]-[info]: This is a error in K:\phpStudy\PHPTutorial\WWW\api\controllers\TestController.class.php on line 142
+[2019-06-28 07:51:23]-[info]: Undefined variable: a in K:\phpStudy\PHPTutorial\WWW\api\controllers\TestController.class.php on line 148
+[2019-06-28 08:10:05]-[info]: syntax error, unexpected 'echo' (T_ECHO), expecting ',' or ';' in K:\phpStudy\PHPTutorial\WWW\api\controllers\TestController.class.php on line 149
+[2019-06-28 08:10:51]-[info]: syntax error, unexpected 'echo' (T_ECHO), expecting ',' or ';' in K:\phpStudy\PHPTutorial\WWW\api\controllers\TestController.class.php on line 149
+[2019-06-28 08:13:20]-[info]: syntax error, unexpected 'echo' (T_ECHO), expecting ',' or ';' in K:\phpStudy\PHPTutorial\WWW\api\controllers\TestController.class.php on line 149

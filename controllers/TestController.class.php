@@ -4,7 +4,7 @@ namespace controllers;
 
 use libs\{ HttpClient , FileUpload};
 use controllers\EncryptController;
-
+use Monolog\Handler\MissingExtensionException;
 
 class TestController
 {
@@ -129,5 +129,23 @@ class TestController
     {
         $res = monolog('错啦','yyy','INFO');
         dd($res);
+    }
+    /**
+     * @content 错误处理测试
+     */
+    public function actionError()
+    {
+        error_reporting(E_ALL);
+
+        // try {
+            $error = 'This is a error';
+            // throw new \Exception($error);
+
+        // } catch (\Throwable $ch) {
+        //     echo $ch->getMessage();
+        // }
+        // \set_exception_handler('actionError');
+            echo $a;
+        echo 5;
     }
 }

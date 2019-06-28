@@ -54,7 +54,7 @@ function decryptCBC($data,$key='yyy',$iv='yyyyyyyy')
     return openssl_decrypt($data,'DES-CBC',$key,0,$iv);
 }
 
-function writeLog($data,$level)
+function writeLog($data,$level='info')
 {
     return \libs\Log::getInstance() -> writeLog($data,$level);
 }
@@ -62,4 +62,29 @@ function writeLog($data,$level)
 function monolog($data,$name,$level='INFO')
 {
     return \libs\Log::getInstance() -> monolog($data,$name,$level);
+}
+
+function sendEmail($body,$subject="",$from="",$to="",$server="",$port="",$username="",$password="")
+{
+    $subject || $subject = config('Mailer.subject');
+    $port || $port = config('Mailer.port');
+    $username || $username = config('Mailer.username');
+    $password || $password = config('Mailer.password');
+    $from || $from = config('Mailer.from');
+    $to || $to = config('Mailer.to');
+    $server || $server = config('Mailer.server');
+    $transport = (new Swift_SmtpTransport($server, $port))
+		->setUsername($username)
+		->setPassword($password);
+
+		$mailer = new Swift_Mailer($transport);
+		$msg = new Swift_Message($subject);
+
+  		$msg->setFrom([$from=>"yyy"])
+  		->setTo([$to])
+		->setBody(
+		    $body,
+		    'text/html'
+		);
+		$mailer->send($msg);
 }

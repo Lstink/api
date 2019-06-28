@@ -1,0 +1,9 @@
+[Mailer]
+
+subject='This is a error'
+server='ssl://smtp.qq.com'
+port='465'
+username='1318385889@qq.com'
+password='dzooljtricnqfifc'
+from='1318385889@qq.com'
+to='1318385889@qq.com'

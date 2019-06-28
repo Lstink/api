@@ -1,0 +1,4 @@
+[config]
+
+errorSendEmail=false
+errorHandler=true
